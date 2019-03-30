@@ -33,7 +33,8 @@ namespace ConsoleApp1
                 }
                 catch (OverflowException)
                 {
-                    Console.WriteLine("Prosze podac liczbe !");
+                    Console.WriteLine("Nalezy podac liczbe !");
+                    continue;
                 }
                 catch (FormatException)
                 {
