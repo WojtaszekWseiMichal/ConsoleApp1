@@ -10,14 +10,29 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Witaj !");
-            Console.Write("Podaj swoje imie : ");
-            string x = Console.ReadLine();
-            Console.WriteLine($"Witaj, {x}");
-
             Random generator = new Random();
             int randomNumber = generator.Next(1, 101);
             Console.WriteLine("Wylosowano liczbe od 1 do 100. \n Odganij ja :");
+
+#if(DEBUG)
+            Console.WriteLine(randomNumber);
+#endif
+            Console.Write("Podaj swoja propozycje :");
+            String text = Console.ReadLine();
+            int proposition = Convert.ToInt32(text);
+
+            Console.WriteLine($"Podales wartosc : {proposition}");
+
+            if (randomNumber > proposition)
+                Console.WriteLine("Za malo");
+            else if(randomNumber<proposition)
+                Console.WriteLine("Za duzo");
+            else
+                Console.WriteLine("Trafiono");
+
+            Console.WriteLine("Dzieki za gre");
+            
+
         }
     }
 }
