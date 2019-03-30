@@ -11,6 +11,7 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             Random generator = new Random();
+            int proposition = 0;
             int randomNumber = generator.Next(1, 101);
             Console.WriteLine("Wylosowano liczbe od 1 do 100. \n Odganij ja :");
 
@@ -19,8 +20,19 @@ namespace ConsoleApp1
 #endif
             Console.Write("Podaj swoja propozycje :");
             String text = Console.ReadLine();
-            int proposition = Convert.ToInt32(text);
 
+            try
+            {
+                proposition = Convert.ToInt32(text);
+            }
+            catch(OverflowException)
+            {
+                Console.WriteLine("Prosze podac liczbe !");
+            }
+            catch(FormatException)
+            {
+                Console.WriteLine("Liczba poza przedzialem");
+            }
             Console.WriteLine($"Podales wartosc : {proposition}");
 
             if (randomNumber > proposition)
