@@ -13,35 +13,48 @@ namespace ConsoleApp1
             Random generator = new Random();
             int proposition = 0;
             int randomNumber = generator.Next(1, 101);
+            bool hit = false;
+            
             Console.WriteLine("Wylosowano liczbe od 1 do 100. \n Odganij ja :");
 
 #if(DEBUG)
             Console.WriteLine(randomNumber);
 #endif
-            Console.Write("Podaj swoja propozycje :");
-            String text = Console.ReadLine();
-
-            try
+            do
             {
-                proposition = Convert.ToInt32(text);
-            }
-            catch(OverflowException)
-            {
-                Console.WriteLine("Prosze podac liczbe !");
-            }
-            catch(FormatException)
-            {
-                Console.WriteLine("Liczba poza przedzialem");
-            }
-            Console.WriteLine($"Podales wartosc : {proposition}");
+                #region
+                Console.Write("Podaj swoja propozycje :");
+                String text = Console.ReadLine();
 
-            if (randomNumber > proposition)
-                Console.WriteLine("Za malo");
-            else if(randomNumber<proposition)
-                Console.WriteLine("Za duzo");
-            else
-                Console.WriteLine("Trafiono");
 
+                try
+                {
+                    proposition = Convert.ToInt32(text);
+                }
+                catch (OverflowException)
+                {
+                    Console.WriteLine("Prosze podac liczbe !");
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Liczba poza przedzialem");
+                }
+                #endregion
+                #region
+                Console.WriteLine($"Podales wartosc : {proposition}");
+
+                if (randomNumber > proposition)
+                    Console.WriteLine("Za malo");
+                else if (randomNumber < proposition)
+                    Console.WriteLine("Za duzo");
+                else
+                {
+                    Console.WriteLine("Trafiono");
+                    hit = true;
+                }
+                #endregion
+            }
+            while (!hit);
             Console.WriteLine("Dzieki za gre");
             
 
